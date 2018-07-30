@@ -65,11 +65,15 @@ export default class {
       }
     });
     for (let i = 0 ; i < document.styleSheets.length; i++) {
-      if (document.styleSheets[i].cssRules || document.styleSheets[i].rules) {
-        let rules = document.styleSheets[i].cssRules || document.styleSheets[i].rules;
-        for (let b = 0 ; b < rules.length; b++) {
-          style += rules[b].cssText;
+      try {
+        if (document.styleSheets[i].cssRules || document.styleSheets[i].rules) {
+          let rules = document.styleSheets[i].cssRules || document.styleSheets[i].rules;
+          for (let b = 0 ; b < rules.length; b++) {
+            style += rules[b].cssText;
+          }
         }
+      } catch (e) {
+        continue;
       }
     }
 
